@@ -1,5 +1,6 @@
 package me.sekayasin.customer;
 
+import me.sekayasin.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class CustomerService {
 
     public Customer getCustomer(Integer customerId) {
         return customerDAO.findCustomerById(customerId)
-                .orElseThrow(() -> new IllegalArgumentException("Customer with id [%s] not found".formatted(customerId)));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer with id [%s] not found".formatted(customerId)));
     }
 
 
