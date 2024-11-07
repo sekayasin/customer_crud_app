@@ -1,9 +1,6 @@
 package me.sekayasin.customer;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,20 @@ public class CustomerController {
     @GetMapping("{customerId}")
     public Customer getCustomer(@PathVariable("customerId") Integer customerId) {
         return customerService.getCustomer(customerId);
+    }
+
+    @PostMapping
+    public void addCustomer(@RequestBody CustomerRegistrationRequest registrationRequest) {
+        customerService.addCustomer(registrationRequest);
+    }
+
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") Integer customerId) {
+        customerService.deleteCustomer(customerId);
+    }
+
+    @PutMapping("{customerId}")
+    public void updateCustomer(@PathVariable("customerId") Integer customerId, @RequestBody CustomerUpdateRequest updateRequest) {
+        customerService.updateCustomer(customerId, updateRequest);
     }
 }
